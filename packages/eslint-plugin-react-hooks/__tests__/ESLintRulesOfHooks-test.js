@@ -550,6 +550,18 @@ const tests = {
       // TODO: this should error but doesn't.
       // errors: [genericError('useState')],
     },
+    {
+      code: normalizeIndent`
+        // valid because the loop does not change the number of times the hook is called
+        const Component = () => {
+          const [state, setState] = useState(0);
+          for (let i = 0; i < 10; i++) {
+            console.log(i);
+          }
+          return <div></div>;
+        };
+      `,
+    },
   ],
   invalid: [
     {
